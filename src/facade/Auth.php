@@ -1,13 +1,13 @@
 <?php
 
 declare (strict_types = 1);
-namespace Shopwwi\WebmanAuth\Facade;
+namespace WebmanAuth\facade;
 
 /**
  * Class Auth
- * @package Shopwwi\WebmanAuth\Facade
- * @see \Shopwwi\WebmanAuth\Auth
- * @mixin \Shopwwi\WebmanAuth\Auth
+ * @package WebmanAuth\Facade
+ * @see \WebmanAuth\Auth
+ * @mixin \WebmanAuth\Auth
  * @method guard(string $name) static 设置用户角色
  * @method login($data,int $access_time = 0,int $refresh_time = 0) static 登入
  * @method refresh() static 刷新token
@@ -25,7 +25,7 @@ class Auth
     public static function instance()
     {
         if (!static::$_instance) {
-            static::$_instance = new \Shopwwi\WebmanAuth\Auth();
+            static::$_instance = new \WebmanAuth\Auth();
         }
         return static::$_instance;
     }

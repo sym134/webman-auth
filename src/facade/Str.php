@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shopwwi\WebmanAuth\Facade;
+namespace WebmanAuth\facade;
 
 use Exception;
 

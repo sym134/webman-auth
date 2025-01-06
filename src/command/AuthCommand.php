@@ -1,8 +1,8 @@
 <?php
 
-namespace app\command;
+namespace WebmanAuth\command;
 
-use Shopwwi\WebmanAuth\Facade\Str;
+use jizhi\WebmanAuth\Facade\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -10,10 +10,10 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-class ShopwwiAuthCommand extends Command
+class AuthCommand extends Command
 {
-    protected static $defaultName = 'shopwwi:auth';
-    protected static $defaultDescription = 'shopwwi auth';
+    protected static string $defaultName = 'admin:auth';
+    protected static string $defaultDescription = 'admin auth';
 
     /**
      * @return void
@@ -28,20 +28,20 @@ class ShopwwiAuthCommand extends Command
      * @param OutputInterface $output
      * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $name = $input->getArgument('name');
         $output->writeln('生成jwtKey 开始');
         $key = Str::random(64);
-        file_put_contents(base_path()."/config/plugin/shopwwi/auth/app.php", str_replace(
-            "'access_secret_key' => '".config('plugin.shopwwi.auth.app.jwt.access_secret_key')."'",
+        file_put_contents(base_path()."/config/plugin/jizhi/auth/app.php", str_replace(
+            "'access_secret_key' => '".config('plugin.jizhi.auth.app.jwt.access_secret_key')."'",
             "'access_secret_key' => '".$key."'",
-            file_get_contents(base_path()."/config/plugin/shopwwi/auth/app.php")
+            file_get_contents(base_path()."/config/plugin/jizhi/auth/app.php")
         ));
-        file_put_contents(base_path()."/config/plugin/shopwwi/auth/app.php", str_replace(
-            "'refresh_secret_key' => '".config('plugin.shopwwi.auth.app.jwt.refresh_secret_key')."'",
+        file_put_contents(base_path()."/config/plugin/jizhi/auth/app.php", str_replace(
+            "'refresh_secret_key' => '".config('plugin.jizhi.auth.app.jwt.refresh_secret_key')."'",
             "'refresh_secret_key' => '".$key."'",
-            file_get_contents(base_path()."/config/plugin/shopwwi/auth/app.php")
+            file_get_contents(base_path()."/config/plugin/jizhi/auth/app.php")
         ));
         $output->writeln('生成jwtKey 结束'.$key);
         return self::SUCCESS;

@@ -1,20 +1,6 @@
 <?php
-/**
- *-------------------------------------------------------------------------p*
- *
- *-------------------------------------------------------------------------h*
- * @copyright  Copyright (c) 2015-2022 Shopwwi Inc. (http://www.shopwwi.com)
- *-------------------------------------------------------------------------c*
- * @license    http://www.shopwwi.com        s h o p w w i . c o m
- *-------------------------------------------------------------------------e*
- * @link       http://www.shopwwi.com by 象讯科技 phcent.com
- *-------------------------------------------------------------------------n*
- * @since      shopwwi象讯·PHP商城系统Pro
- *-------------------------------------------------------------------------t*
- */
 
-
-namespace Shopwwi\WebmanAuth;
+namespace WebmanAuth;
 
 
 use Firebase\JWT\BeforeValidException;
@@ -22,8 +8,8 @@ use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT as jwtMan;
 use Firebase\JWT\Key;
 use Firebase\JWT\SignatureInvalidException;
-use Shopwwi\WebmanAuth\Exception\JwtTokenException;
-use Shopwwi\WebmanAuth\Facade\Str;
+use WebmanAuth\exception\JwtTokenException;
+use WebmanAuth\facade\Str;
 use support\Redis;
 use UnexpectedValueException;
 
@@ -48,7 +34,7 @@ class JWT
      */
     public function __construct()
     {
-        $_config = config('plugin.shopwwi.auth.app.jwt');
+        $_config = config('plugin.jizhi.auth.app.jwt');
         if (empty($_config)) {
             throw new JwtTokenException('The configuration file is abnormal or does not exist');
         }
@@ -90,7 +76,7 @@ class JWT
         $refreshToken = self::makeToken($payload['refreshPayload'], $refreshSecretKey, $this->config['algorithms']);
 
         //获取主键
-        $idKey = config("plugin.shopwwi.auth.app.guard.{$this->guard}.key");
+        $idKey = config("plugin.jizhi.auth.app.guard.{$this->guard}.key");
         //redis 开启
         if ($this->redis) {
             $this->setRedis($extend[$idKey], $accessToken, $refreshToken, $exp, $refreshExp);
@@ -123,7 +109,7 @@ class JWT
         $tokenObj = json_decode(json_encode(['access_token' => $newToken]));
         if ($this->redis) {
             //获取主键
-            $idKey = config("plugin.shopwwi.auth.app.guard.{$this->guard}.key");
+            $idKey = config("plugin.jizhi.auth.app.guard.{$this->guard}.key");
             $this->setRedis($tokenPayload['extend']->$idKey, $tokenObj->access_token, $token, $this->config['access_exp'], $this->config['refresh_exp']);
         }
         return $tokenObj;
@@ -185,7 +171,7 @@ class JWT
             //redis 开启
             if ($this->redis) {
                 //获取主键
-                $idKey = config("plugin.shopwwi.auth.app.guard.{$this->guard}.key");
+                $idKey = config("plugin.jizhi.auth.app.guard.{$this->guard}.key");
                 $this->checkRedis($tokenPayload->extend->$idKey, $token, $tokenType);
             }
             return $tokenPayload;
@@ -310,7 +296,7 @@ class JWT
         if (isset($this->config['redis']) && $this->config['redis']) {
 
             //获取主键
-            $idKey = config("plugin.shopwwi.auth.app.guard.{$this->guard}.key");
+            $idKey = config("plugin.jizhi.auth.app.guard.{$this->guard}.key");
             $id = $tokenPayload->extend->$idKey;
             if ($all) {
                 Redis::hDel("token_{$this->guard}", $id);
@@ -359,7 +345,7 @@ class JWT
         ];
         if ($list != null) {
             $tokenList = unserialize($list);
-            $maxNum = config("plugin.shopwwi.auth.app.guard.{$this->guard}.num");
+            $maxNum = config("plugin.jizhi.auth.app.guard.{$this->guard}.num");
             if (is_array($tokenList)) {
                 if ($maxNum === -1) { //不限制
                     $match = false;

@@ -1,13 +1,13 @@
 <?php
 
 declare (strict_types = 1);
-namespace Shopwwi\WebmanAuth\Facade;
+namespace WebmanAuth\facade;
 
 /**
  * Class Auth
- * @package Shopwwi\WebmanAuth\Facade
- * @see \Shopwwi\WebmanAuth\JWT
- * @mixin \Shopwwi\WebmanAuth\JWT
+ * @package WebmanAuth\Facade
+ * @see \WebmanAuth\JWT
+ * @mixin \WebmanAuth\JWT
  * @method make(array $extend,int $access_exp = 0,int $refresh_exp = 0) static 生成令牌
  * @method refresh(int $accessTime) static 刷新令牌
  * @method guard($guard = 'user') static 设置角色
@@ -26,7 +26,7 @@ class JWT
     public static function instance()
     {
         if (!static::$_instance) {
-            static::$_instance = new \Shopwwi\WebmanAuth\JWT();
+            static::$_instance = new \WebmanAuth\JWT();
         }
         return static::$_instance;
     }

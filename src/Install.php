@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopwwi\WebmanAuth;
+namespace WebmanAuth;
 
 class Install
 {
@@ -10,8 +10,7 @@ class Install
      * @var array
      */
     protected static $pathRelation = array (
-        'config/plugin/shopwwi/auth' => 'config/plugin/shopwwi/auth',
-        'command' => 'app/command'
+        'config/plugin/jizhi/auth' => 'config/plugin/jizhi/auth',
     );
 
     /**
