@@ -2,18 +2,28 @@
   "name": "jizhi/webman-auth",
   "description": "webman auth",
   "keywords": ["webman", "auth"],
+  "version": "1.0.1",
   "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "sym",
+      "email": "symok@qq.com",
+      "homepage": "https://github.com/sym134"
+    }
+  ],
   "require": {
     "php": ">=8.0",
     "firebase/php-jwt": ">=5.4|^6.0",
-    "webman/console": "^1.0",
-    "workerman/webman-framework": "^1.6"
+    "webman/console": "^1.0"
   },
-  "license": "MIT",
   "autoload": {
     "psr-4": {
       "WebmanAuth\\": "src/"
     }
+  },
+  "require-dev": {
+    "workerman/webman-framework": "^1.6"
   },
   "extra": {
     "branch-alias": {
