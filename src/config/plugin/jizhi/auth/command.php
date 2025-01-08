@@ -1,4 +1,4 @@
 <?php
 return [
-    \WebmanAuth\command\AuthCommand::class
+    \WebmanAuth\command\AuthKeyCommand::class
 ];

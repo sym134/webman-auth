@@ -9,10 +9,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use WebmanAuth\facade\Str;
 
 
-class AuthCommand extends Command
+class AuthKeyCommand extends Command
 {
-    protected static string $defaultName = 'auth:install';
-    protected static string $defaultDescription = 'auth install';
+    protected static string $defaultName = 'auth:key';
+    protected static string $defaultDescription = 'auth key';
 
     /**
      * @return void
@@ -31,7 +31,7 @@ class AuthCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $name = $input->getArgument('name');
-        $output->writeln('生成jwtKey 开始');
+        $output->writeln('Generate jwtKey Start');
         $key = Str::random(64);
         file_put_contents(base_path()."/config/plugin/jizhi/auth/app.php", str_replace(
             "'access_secret_key' => '".config('plugin.jizhi.auth.app.jwt.access_secret_key')."'",
@@ -43,7 +43,7 @@ class AuthCommand extends Command
             "'refresh_secret_key' => '".$key."'",
             file_get_contents(base_path()."/config/plugin/jizhi/auth/app.php")
         ));
-        $output->writeln('生成jwtKey 结束'.$key);
+        $output->writeln('Generate jwtKey End'.$key);
         return self::SUCCESS;
     }
 
