@@ -2,12 +2,11 @@
 
 namespace WebmanAuth\command;
 
-use jizhi\WebmanAuth\Facade\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
+use WebmanAuth\facade\Str;
 
 
 class AuthCommand extends Command
@@ -18,7 +17,7 @@ class AuthCommand extends Command
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->addArgument('name', InputArgument::OPTIONAL, 'Name description');
     }
@@ -27,6 +26,7 @@ class AuthCommand extends Command
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int
+     * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
