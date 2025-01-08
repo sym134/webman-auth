@@ -12,8 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class AuthCommand extends Command
 {
-    protected static string $defaultName = 'admin:auth';
-    protected static string $defaultDescription = 'admin auth';
+    protected static string $defaultName = 'auth:install';
+    protected static string $defaultDescription = 'auth install';
 
     /**
      * @return void

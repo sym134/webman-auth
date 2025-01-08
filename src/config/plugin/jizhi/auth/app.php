@@ -11,7 +11,7 @@
          ]
      ],
      'jwt' => [
-         'redis' => false,
+         'redis' => env('AUTH_JWT_REDIS', 'redis'),
          // 算法类型 ES256、HS256、HS384、HS512、RS256、RS384、RS512
          'algorithms' => 'HS256',
          // access令牌秘钥
